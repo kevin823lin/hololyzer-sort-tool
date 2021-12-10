@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "hololyzer 排序工具",
+    "description": "hololyzer Sort Tool"
+  },
+    "appDesc": {
+    "message": "让 hololyzer 的超级留言清单支持按姓名排序",
+    "description": "Add support for sort hololyzer's super chat list by name."
+  }
+}
