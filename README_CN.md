@@ -36,4 +36,4 @@
 
     1. 安装使用者脚本管理器
 
-    1. 下载或开启「[hololyzer-sort-tool.user.js](./hololyzer-sort-tool.user.js?raw=1)」
+    1. 下载或开启「[hololyzer-sort-tool.user.js](https://greasyfork.org/zh-TW/scripts/436870-hololyzer-sort-tool)」

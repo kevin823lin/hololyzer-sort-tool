@@ -36,4 +36,4 @@ Add support for sort hololyzer's super chat list by name.
 
     1. Install a user script manager
 
-    1. Download or open "[hololyzer-sort-tool.user.js](./hololyzer-sort-tool.user.js?raw=1)"
+    1. Download or open "[hololyzer-sort-tool.user.js](https://greasyfork.org/zh-TW/scripts/436870-hololyzer-sort-tool)"
