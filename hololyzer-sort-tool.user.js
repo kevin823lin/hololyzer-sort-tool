@@ -27,33 +27,33 @@
     }, false);
 
     function insertButton() {
-        const sortByTime = document.createElement('button');
-        const sortByName = document.createElement('button');
-        sortByTime.innerHTML = "時間排序";
-        sortByName.innerHTML = "姓名排序";
-        sortByTime.addEventListener("click", function () {
+        const sortByTimeBtn = document.createElement('button');
+        const sortByNameBtn = document.createElement('button');
+        sortByTimeBtn.innerHTML = "時間排序";
+        sortByNameBtn.innerHTML = "姓名排序";
+        sortByTimeBtn.addEventListener("click", function () {
             if (document.body.dataset.sortBy !== "time") {
                 window.location.href = window.location.href;
             }
         });
-        sortByName.addEventListener("click", async function () {
+        sortByNameBtn.addEventListener("click", async function () {
             if ((document.body.dataset.sortBy) !== "name") {
                 document.body.dataset.sortBy = "name";
                 await waitElementsLoaded('table[border]');
                 main();
             }
         });
-        document.body.insertAdjacentElement('afterbegin', sortByName);
-        document.body.insertAdjacentElement('afterbegin', sortByTime);
+        document.body.insertAdjacentElement('afterbegin', sortByNameBtn);
+        document.body.insertAdjacentElement('afterbegin', sortByTimeBtn);
     }
 
     function main() {
-        move();
-        sort();
-        insert();
+        moveYenCol();
+        sortByName();
+        insertRemoveDuplicatesCol();
     }
 
-    function move() {
+    function moveYenCol() {
         const tbody = document.querySelector('table[border] > tbody');
         const trs = tbody.querySelectorAll("tr");
         const insertIndex = [...tbody.querySelectorAll("th")].findIndex(th => th.matches('[style]'));
@@ -71,7 +71,7 @@
         })
     }
 
-    function sort() {
+    function sortByName() {
         const tbody = document.querySelector('table[border] > tbody');
         const trs = [...tbody.querySelectorAll("tr")].filter(tr => {
             return tr.querySelector('td');
@@ -91,7 +91,7 @@
         }
     }
 
-    function insert() {
+    function insertRemoveDuplicatesCol() {
         const tbody = document.querySelector('table[border] > tbody');
         const trs = [...tbody.querySelectorAll("tr")].filter(tr => {
             return tr.querySelector('td');
