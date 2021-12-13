@@ -13,6 +13,7 @@
 // @match              https://www.hololyzer.net/*/superchat/*
 // @icon               https://www.google.com/s2/favicons?domain=hololyzer.net
 // @grant              none
+// @run-at             document-start
 // @date               2021-12-11
 // ==/UserScript==
 
@@ -20,7 +21,7 @@
     'use strict';
 
     // Your code here...
-    window.addEventListener('load', function (event) {
+    window.addEventListener('DOMContentLoaded', function (event) {
         document.body.dataset.sortBy = "time";
         insertButton();
     }, false);
