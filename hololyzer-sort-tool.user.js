@@ -29,8 +29,10 @@
     function insertButton() {
         const sortByTimeBtn = document.createElement('button');
         const sortByNameBtn = document.createElement('button');
-        sortByTimeBtn.innerHTML = "時間排序";
-        sortByNameBtn.innerHTML = "姓名排序";
+        const copyTableBtn = document.createElement('button');
+        sortByTimeBtn.innerText = "時間排序";
+        sortByNameBtn.innerText = "姓名排序";
+        copyTableBtn.innerText = "複製表格";
         sortByTimeBtn.addEventListener("click", function () {
             if (document.body.dataset.sortBy !== "time") {
                 window.location.href = window.location.href;
@@ -43,6 +45,10 @@
                 main();
             }
         });
+        copyTableBtn.addEventListener("click", function () {
+            copyTable();
+        });
+        document.body.insertAdjacentElement('afterbegin', copyTableBtn);
         document.body.insertAdjacentElement('afterbegin', sortByNameBtn);
         document.body.insertAdjacentElement('afterbegin', sortByTimeBtn);
     }
@@ -115,15 +121,40 @@
         }
         for (const [i, tr] of trs.entries()) {
             const insertEle = tr.insertCell(insertIndex + 1);
-            insertEle.innerHTML = countList[i];
+            insertEle.innerText = countList[i];
             insertEle.style = "text-align: right";
         }
         const parentEle = tbody.querySelector("tr");
         const childrenEle = parentEle.children[insertIndex + 1];
         const insertEle = document.createElement("th");
-        insertEle.innerHTML = "去除重複";
+        insertEle.innerText = "去除重複";
         insertEle.style = "white-space: nowrap;";
         parentEle.insertBefore(insertEle, childrenEle);
+    }
+
+    function copyTable() {
+        copyElement(document.querySelector('table[border] > tbody'));
+    }
+
+    function copyElement(ele) {
+        if (document.createRange && window.getSelection) {
+            const sel = window.getSelection();
+            const oldRange = Array.apply(null, new Array(sel.rangeCount)).map((a, i) => sel.getRangeAt(i));
+            const copyRange = document.createRange();
+            sel.removeAllRanges();
+            try {
+                copyRange.selectNode(ele);
+                sel.addRange(copyRange);
+            } catch (e) {
+                copyRange.selectNodeContents(ele);
+                sel.addRange(copyRange);
+            }
+            document.execCommand("copy");
+            sel.removeAllRanges();
+            oldRange.forEach(range => { sel.addRange(range) });
+        } else {
+            alert("複製失敗");
+        }
     }
 
     function waitElementsLoaded(...eles) {
