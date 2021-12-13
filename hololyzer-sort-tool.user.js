@@ -4,7 +4,7 @@
 // @name:zh-TW         hololyzer 排序工具
 // @name:zh-CN         hololyzer 排序工具
 // @namespace          https://github.com/kevin823lin
-// @version            0.1
+// @version            0.2
 // @description        Add support for sort hololyzer's super chat list by name.
 // @description:zh     讓 hololyzer 的超級留言清單支援按姓名排序
 // @description:zh-TW  讓 hololyzer 的超級留言清單支援按姓名排序
@@ -14,7 +14,7 @@
 // @icon               https://www.google.com/s2/favicons?domain=hololyzer.net
 // @grant              none
 // @run-at             document-start
-// @date               2021-12-11
+// @date               2021-12-13
 // ==/UserScript==
 
 (function () {

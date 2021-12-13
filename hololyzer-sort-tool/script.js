@@ -4,7 +4,7 @@
 // @name:zh-TW         hololyzer 排序工具
 // @name:zh-CN         hololyzer 排序工具
 // @namespace          https://github.com/kevin823lin
-// @version            0.1
+// @version            0.2
 // @description        Add support for sort hololyzer's super chat list by name.
 // @description:zh     讓 hololyzer 的超級留言清單支援按姓名排序
 // @description:zh-TW  讓 hololyzer 的超級留言清單支援按姓名排序
@@ -13,46 +13,53 @@
 // @match              https://www.hololyzer.net/*/superchat/*
 // @icon               https://www.google.com/s2/favicons?domain=hololyzer.net
 // @grant              none
-// @date               2021-12-11
+// @run-at             document-start
+// @date               2021-12-13
 // ==/UserScript==
 
 (function () {
     'use strict';
 
     // Your code here...
-    window.addEventListener('load', function (event) {
+    window.addEventListener('DOMContentLoaded', function (event) {
         document.body.dataset.sortBy = "time";
         insertButton();
     }, false);
 
     function insertButton() {
-        const sortByTime = document.createElement('button');
-        const sortByName = document.createElement('button');
-        sortByTime.innerHTML = "時間排序";
-        sortByName.innerHTML = "姓名排序";
-        sortByTime.addEventListener("click", function () {
+        const sortByTimeBtn = document.createElement('button');
+        const sortByNameBtn = document.createElement('button');
+        const copyTableBtn = document.createElement('button');
+        sortByTimeBtn.innerText = "時間排序";
+        sortByNameBtn.innerText = "姓名排序";
+        copyTableBtn.innerText = "複製表格";
+        sortByTimeBtn.addEventListener("click", function () {
             if (document.body.dataset.sortBy !== "time") {
                 window.location.href = window.location.href;
             }
         });
-        sortByName.addEventListener("click", async function () {
+        sortByNameBtn.addEventListener("click", async function () {
             if ((document.body.dataset.sortBy) !== "name") {
                 document.body.dataset.sortBy = "name";
                 await waitElementsLoaded('table[border]');
                 main();
             }
         });
-        document.body.insertAdjacentElement('afterbegin', sortByName);
-        document.body.insertAdjacentElement('afterbegin', sortByTime);
+        copyTableBtn.addEventListener("click", function () {
+            copyTable();
+        });
+        document.body.insertAdjacentElement('afterbegin', copyTableBtn);
+        document.body.insertAdjacentElement('afterbegin', sortByNameBtn);
+        document.body.insertAdjacentElement('afterbegin', sortByTimeBtn);
     }
 
     function main() {
-        move();
-        sort();
-        insert();
+        moveYenCol();
+        sortByName();
+        insertRemoveDuplicatesCol();
     }
 
-    function move() {
+    function moveYenCol() {
         const tbody = document.querySelector('table[border] > tbody');
         const trs = tbody.querySelectorAll("tr");
         const insertIndex = [...tbody.querySelectorAll("th")].findIndex(th => th.matches('[style]'));
@@ -70,7 +77,7 @@
         })
     }
 
-    function sort() {
+    function sortByName() {
         const tbody = document.querySelector('table[border] > tbody');
         const trs = [...tbody.querySelectorAll("tr")].filter(tr => {
             return tr.querySelector('td');
@@ -90,7 +97,7 @@
         }
     }
 
-    function insert() {
+    function insertRemoveDuplicatesCol() {
         const tbody = document.querySelector('table[border] > tbody');
         const trs = [...tbody.querySelectorAll("tr")].filter(tr => {
             return tr.querySelector('td');
@@ -114,15 +121,40 @@
         }
         for (const [i, tr] of trs.entries()) {
             const insertEle = tr.insertCell(insertIndex + 1);
-            insertEle.innerHTML = countList[i];
+            insertEle.innerText = countList[i];
             insertEle.style = "text-align: right";
         }
         const parentEle = tbody.querySelector("tr");
         const childrenEle = parentEle.children[insertIndex + 1];
         const insertEle = document.createElement("th");
-        insertEle.innerHTML = "去除重複";
+        insertEle.innerText = "去除重複";
         insertEle.style = "white-space: nowrap;";
         parentEle.insertBefore(insertEle, childrenEle);
+    }
+
+    function copyTable() {
+        copyElement(document.querySelector('table[border] > tbody'));
+    }
+
+    function copyElement(ele) {
+        if (document.createRange && window.getSelection) {
+            const sel = window.getSelection();
+            const oldRange = Array.apply(null, new Array(sel.rangeCount)).map((a, i) => sel.getRangeAt(i));
+            const copyRange = document.createRange();
+            sel.removeAllRanges();
+            try {
+                copyRange.selectNode(ele);
+                sel.addRange(copyRange);
+            } catch (e) {
+                copyRange.selectNodeContents(ele);
+                sel.addRange(copyRange);
+            }
+            document.execCommand("copy");
+            sel.removeAllRanges();
+            oldRange.forEach(range => { sel.addRange(range) });
+        } else {
+            alert("複製失敗");
+        }
     }
 
     function waitElementsLoaded(...eles) {
