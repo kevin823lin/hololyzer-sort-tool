@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "होलोलाइज़र सॉर्ट टूल",
+    "description": "hololyzer Sort Tool"
+  },
+    "appDesc": {
+    "message": "नाम द्वारा होलोलाइजर के सुपर चैट सूची को सॉर्ट करने के लिए समर्थन जोड़ें।",
+    "description": "Add support for sorting hololyzer's super chat list by name."
+  }
+}

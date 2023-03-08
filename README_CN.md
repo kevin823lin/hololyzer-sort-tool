@@ -2,7 +2,7 @@
 
 # hololyzer 排序工具
 
-让 hololyzer 的超级留言清单支持按姓名排序
+让 hololyzer 的超级留言清单支持姓名排序功能
 
 ## 演示
 

@@ -2,13 +2,12 @@
   "name": "__MSG_appName__",
   "action": {},
   "manifest_version": 3,
-  "version": "0.2",
+  "version": "0.3",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "content_scripts": [
     {
       "matches": ["https://www.hololyzer.net/*/superchat/*"],
-      "run_at": "document_start",
       "js": ["script.js"]
     }
   ]
