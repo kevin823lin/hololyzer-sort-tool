@@ -2,7 +2,7 @@ EN | [正體中文](./README_TW.md) | [简体中文](./README_CN.md)
 
 # hololyzer Sort Tool
 
-Add support for sort hololyzer's super chat list by name.
+Add support for sorting hololyzer's super chat list by name.
 
 ## Demo
 

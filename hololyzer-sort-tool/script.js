@@ -24,7 +24,7 @@
 // @name:nl hololyzer sorteertool
 // @name:fa ابزار مرتب سازی hololyzer
 // @namespace          https://github.com/kevin823lin
-// @version            0.2
+// @version            0.3
 // @description Add support for sorting hololyzer's super chat list by name.
 // @description:zh 讓 hololyzer 的超級留言清單支援姓名排序功能
 // @description:zh-TW 讓 hololyzer 的超級留言清單支援姓名排序功能
