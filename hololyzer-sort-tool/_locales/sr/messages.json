@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Alat za sortiranje hololajzera",
+    "description": "hololyzer Sort Tool"
+  },
+    "appDesc": {
+    "message": "Dodajte podršku za sortiranje super-čet liste hololyzer-a po imenu.",
+    "description": "Add support for sorting hololyzer's super chat list by name."
+  }
+}

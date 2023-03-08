@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Chombo cha utaratibu wa hololyzer",
+    "description": "hololyzer Sort Tool"
+  },
+    "appDesc": {
+    "message": "Ongeza msaada wa kupanga orodha ya gumzo kuu la hololyzer kwa jina.",
+    "description": "Add support for sorting hololyzer's super chat list by name."
+  }
+}

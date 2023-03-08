@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "hololyzer 정렬 도구",
+    "description": "hololyzer Sort Tool"
+  },
+    "appDesc": {
+    "message": "hololyzer의 슈퍼 챗 목록을 이름별로 정렬하는 기능",
+    "description": "Add support for sorting hololyzer's super chat list by name."
+  }
+}
